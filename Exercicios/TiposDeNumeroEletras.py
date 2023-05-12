@@ -1,0 +1,10 @@
+profissao = str(input('Digite algo: '))
+print( "O tipo primitivo desse valor é: ", type(profissao))
+print('É um número? ', profissao.isnumeric())
+print('Só tem espaços?  ', profissao.isspace())
+print('É alfanúmerico?  ', profissao.isalnum())
+print('É alfabético?  ', profissao.isalpha())
+print('Está em maiúsculas?  ', profissao.isupper())
+print('Está em minúsculas?  ', profissao.islower())
+print('Está em capitalizada?  ', profissao.istitle())
+
