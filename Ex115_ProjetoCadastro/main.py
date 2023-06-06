@@ -9,9 +9,9 @@ except json.JSONDecodeError:
 
 
 while True:
-    print("\033[0;30;43m",end='')
+    
     funci.escreva("MENU")
-    print("\033[m")
+    
     print('''Escolha uma das Opções
     
 1 - Cadastrar
