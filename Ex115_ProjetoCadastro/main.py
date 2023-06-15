@@ -1,47 +1,24 @@
 import funci
 import json
-
 try:
-    funci.carregar_dados()
-
-except json.JSONDecodeError:
-    print("Erro ao carregar os dados do arquivo JSON.")
-
-
-while True:
-    
-    funci.escreva("MENU")
-    
-    print('''Escolha uma das Opções
-    
-1 - Cadastrar
-2 - Exibir Lista
-3 - Excluir
-4 - Sair''')
     try:
+        funci.carregar_dados()
 
-        rsp = int(input(">>>>>> ".strip()))
+    except json.JSONDecodeError:
+        print("Erro ao carregar os dados do arquivo JSON.")
 
-        if rsp == 1:
-            funci.cadastrar()
-        elif rsp == 2:
-            funci.exibir()
-        elif rsp == 3:
-            funci.escreva("EXCLUIR CADASTRO!")
-            id = int(input("Digite o ID do cadastro a ser excluido!"))
-            funci.excluir(id)
-        elif rsp == 4:
-            break
-        elif rsp != (1, 2, 3, 4):
-            print("Número não disponivel, Tente novamente!")
-            continue
+    funci.login()
 
-    except ValueError:
-        print("Tente Novamente, Valor Inválido")
+    funci.menu()
 
-try:
-    funci.salvar_dados()
-except json.JSONDecodeError:
-    print("Erro ao salvar os dados no arquivo JSON.")
 
+    print("Voce saiu do Programa!")
+    try:
+        funci.salvar_dados()
+    except json.JSONDecodeError:
+        print("Erro ao salvar os dados no arquivo JSON.")
+
+except KeyboardInterrupt:
+    print("\n")
+    funci.escreva("Voce forçou a interrupção do programa!")
 
