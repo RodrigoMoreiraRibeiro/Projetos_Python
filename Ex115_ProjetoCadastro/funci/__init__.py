@@ -83,16 +83,28 @@ def obter_resposta():
 
 
 def carregar_dados():
-    global lista_cadastros
+    global lista_cadastros, proximo_id
     try:
         with open('dados.json', 'r') as arquivo:
             dados = json.load(arquivo)
-            #global lista_cadastros
-            lista_cadastros = dados
-            global proximo_id
-            proximo_id = max([cadastro["_id_"]for cadastro in lista_cadastros]) + 1
+            if isinstance(dados, list):
+                lista_cadastros = dados
+                if lista_cadastros:
+                    proximo_id = max(cadastro["_id_"] for cadastro in lista_cadastros) + 1
+                else:
+                    proximo_id = 1
+            else:
+                print("Formato inválido no arquivo JSON. Esperando uma lista de cadastros.")
+                lista_cadastros = []
+                proximo_id = 1
     except FileNotFoundError:
-        pass
+        print("Arquivo 'dados.json' não encontrado. Inicializando com lista vazia.")
+        lista_cadastros = []
+        proximo_id = 1
+    except json.JSONDecodeError:
+        print("Erro ao carregar os dados do arquivo JSON. Inicializando com lista vazia.")
+        lista_cadastros = []
+        proximo_id = 1
 
 
 def salvar_dados():
